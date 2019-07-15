@@ -1,13 +1,13 @@
 ---
-title: sendmailok
+title: listfiles
 ---
 
-# sendmailok
-This activity allows to send mail to given recipient
+# listfiles
+This activity allows to list details of all the files in a folder
 
 ## Installation
 ### Flogo CLI
 ```bash
-flogo install github.com/purna-s/sendmailok
+flogo install github.com/purna-s/listfiles
 ```
 

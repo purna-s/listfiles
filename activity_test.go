@@ -1,4 +1,4 @@
-package sendmailok
+package listfiles
 
 import (
 
@@ -50,13 +50,7 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
-	tc.SetInput("Aserver", "smtp.gmail.com")
-	tc.SetInput("Bport", "587")
-	tc.SetInput("Csender", "sendalertsforq@gmail.com")
-	tc.SetInput("Dapppassword", "ptcxejoylzgtrfmh")
-	tc.SetInput("Ercpnt", "purna.sadanala@prowesssoft.com")
-	tc.SetInput("Fsub", "Q_Subscriber_Down!")
-	tc.SetInput("Gbody", "Subscriber_for_Queue_is_down.")
+	tc.SetInput("Loc", "F:\Flogo_Apps\Consumer")
 
 	done, err := act.Eval(tc)
 	if !done {
@@ -65,7 +59,13 @@ func TestEval(t *testing.T) {
 	act.Eval(tc)
 	//check output attr
 
-	output := tc.GetOutput("output")
-	assert.Equal(t, output, output)
+	fullName := tc.GetOutput("fullName")
+	assert.Equal(t, fullName, fullName)
+	fileName := tc.GetOutput("fileName")
+	assert.Equal(t, fileName, fileName)
+	size := tc.GetOutput("size")
+	assert.Equal(t, size, size)
+	lastModified := tc.GetOutput("lastModified")
+	assert.Equal(t, lastModified, lastModified)
 
 }

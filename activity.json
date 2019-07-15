@@ -1,53 +1,35 @@
 {
-  "name": "sendmailinputsabc23",
+  "name": "listfiles",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "ref": "github.com/purna-s/sendmailok",  
-  "title": "sendmailok_CR",
+  "ref": "github.com/purna-s/listfiles",  
+  "title": "listfiles_test",
   "description": "Send mail to recipient",
   "author": "Purna S <purna.sadanala@prowesssoft.com>",
 
   "inputs":[
     
 	{
-      "name": "Aserver",
-      "type": "string",
-      "required": true
-    },
-	{
-      "name": "Bport",
-      "type": "string",
-      "required": true
-    },
-	{
-      "name": "Csender",
-      "type": "string",
-      "required": true
-    },
-	{
-      "name": "Dapppassword",
-      "type": "string",
-      "required": true
-    },
-    {
-      "name": "Ercpnt",
-      "type": "string",
-      "required": true
-    },
-	{
-      "name": "Fsub",
-      "type": "string",
-      "required": true
-    },
-	{
-      "name": "Gbody",
+      "name": "Loc",
       "type": "string",
       "required": true
     }
   ],
   "outputs": [
     {
-      "name": "output",
+      "name": "fullName",
+      "type": "string"
+    ,
+	{
+      "name": "fileName",
+      "type": "string"
+    },
+	{
+      "name": "size",
+      "type": "string"
+    },
+	{
+      "name": "lastModified",
       "type": "string"
     }
   ]
