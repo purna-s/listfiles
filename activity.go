@@ -27,18 +27,6 @@ func (a *listfiles) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
-
-// Eval implements activity.Activity.Eval
-func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
-	
-	loc := ctx.GetInput("Loc").(string)
-	//fmt.Println("Enter Location:")
-	//var loc string
-	//fmt.Scan(&loc)
-    WalkAllFilesInDir(loc)	
-	
-}
-
 func WalkAllFilesInDir(dir string) error {
     return filepath.Walk(dir, func(path string, info os.FileInfo, e error) error {
         if e != nil {
@@ -61,4 +49,14 @@ func WalkAllFilesInDir(dir string) error {
         }
         return nil
     })
+}
+
+// Eval implements activity.Activity.Eval
+func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
+	
+	loc := ctx.GetInput("Loc").(string)
+	//fmt.Println("Enter Location:")
+	//var loc string
+	//fmt.Scan(&loc)
+    WalkAllFilesInDir(loc)	
 }
