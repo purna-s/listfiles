@@ -3,9 +3,8 @@ package listfiles
 import (
 
 	"fmt"
-	"log"
-	"net/smtp"
-	"strings"
+    "os"
+    "path/filepath"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
