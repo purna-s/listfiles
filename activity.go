@@ -63,18 +63,19 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 					ctx.SetOutput("ModTime", infoX.ModTime())
 					}
 				}
-		activityLog.Debugf("Activity has listed out the files Successfully")
-		fmt.Println("Activity has listed out the files Successfully")
 		
 		return nil
 	}
 
-	err = filepath.Walk(loc, ff)
+	err := filepath.Walk(loc, ff)
 
 	if err != nil {
 		fmt.Println("error walking the path : \n", loc, err)
 	}
 
+	activityLog.Debugf("Activity has listed out the files Successfully")
+	fmt.Println("Activity has listed out the files Successfully")
+	
 	return true, nil
 }
 
