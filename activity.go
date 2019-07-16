@@ -30,8 +30,10 @@ func (a *listfiles) Metadata() *activity.Metadata {
 // Eval implements activity.Activity.Eval
 func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	
-	loc := ctx.GetInput("Path").(string)
-	subs := ctx.GetInput("SubDirectories[Y/N]").(string)
+	
+		loc := ctx.GetInput("Path").(string)
+		subs := ctx.GetInput("SubDirectories[Y/N]").(string)
+	
 	
 	
 	// the function that handles each file or dir
@@ -72,5 +74,5 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	if err != nil {
 		fmt.Println("error walking the path : \n", loc, err)
 	}
-}
+
 
