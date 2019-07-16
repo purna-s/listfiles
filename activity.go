@@ -53,7 +53,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 				fmt.Println("Size", infoX.Size())
 				fmt.Println("ModTime", infoX.ModTime())
 				fmt.Println("\n")
-			} else if strings.Replace(filepath.Dir(pathX), "/", "//") == strings.Replace(loc, "\", "//", -1) {
+			} else if filepath.Dir(pathX) == strings.Replace(loc, "/", "\\", -1) {
 					fmt.Println("FileName", infoX.Name())
 					fmt.Println("Directory", filepath.Dir(pathX))
 					fmt.Println("Extension", filepath.Ext(pathX))
