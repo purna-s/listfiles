@@ -37,37 +37,32 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	
 	
 	// the function that handles each file or dir
-		ff := func(pathX string, infoX os.FileInfo, errX error) error {
+	err := filepath.Walk(loc, func(pathX string, infoX os.FileInfo, errX error) error {
 
-		// first thing to do, check error. and decide what to do about it
 		if errX != nil {
-			fmt.Println("error at a path \n", errX, pathX)
+			fmt.Printf("error 「%v」 at a path 「%q」\n", errX, pathX)
 			return errX
 		}
 
-		// find out if it's a dir or file, if file, print info
 		if infoX.IsDir() {
 			fmt.Println("\n'", pathX, "'", " is a directory.\n")
 		} else if subs == "Y" {
-				ctx.SetOutput("FileName", infoX.Name())
-				ctx.SetOutput("Directory", filepath.Dir(pathX))
-				ctx.SetOutput("Extension", filepath.Ext(pathX))
-				ctx.SetOutput("Size", infoX.Size())
-				ctx.SetOutput("ModTime", infoX.ModTime())
-			} else {
-				if filepath.Dir(pathX) == loc {
-					ctx.SetOutput("FileName", infoX.Name())
-					ctx.SetOutput("Directory", filepath.Dir(pathX))
-					ctx.SetOutput("Extension", filepath.Ext(pathX))
-					ctx.SetOutput("Size", infoX.Size())
-					ctx.SetOutput("ModTime", infoX.ModTime())
-					}
+				fmt.Println("  file name: ", infoX.Name())
+				fmt.Println("  dir: ", filepath.Dir(pathX))
+				fmt.Println("  extenion: ", filepath.Ext(pathX))
+				fmt.Println("  file size: ", infoX.Size())
+				fmt.Println("  ModTime: ", infoX.ModTime())
+				fmt.Println("\n")
+			} else if filepath.Dir(pathX) == loc {
+					fmt.Println("  file name: ", infoX.Name())
+					fmt.Println("  dir: ", filepath.Dir(pathX))
+					fmt.Println("  extenion: ", filepath.Ext(pathX))
+					fmt.Println("  file size: ", infoX.Size())
+					fmt.Println("  ModTime: ", infoX.ModTime())
+					fmt.Println("\n")
 				}
-		
-		return nil
-	}
-
-	err = filepath.Walk(loc, ff)
+	return nil
+   })
 
 	if err != nil {
 		fmt.Println("error walking the path : \n", loc, err)
@@ -75,12 +70,6 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 
 	activityLog.Debugf("Activity has listed out the files Successfully")
 	fmt.Println("Activity has listed out the files Successfully")
-	
-	ctx.SetOutput("FileName", infoX.Name())
-	ctx.SetOutput("Directory", filepath.Dir(pathX))
-	ctx.SetOutput("Extension", filepath.Ext(pathX))
-	ctx.SetOutput("Size", infoX.Size())
-	ctx.SetOutput("ModTime", infoX.ModTime())
 	
 	return true, nil
 }
