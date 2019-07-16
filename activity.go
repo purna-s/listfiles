@@ -37,7 +37,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	
 	
 	// the function that handles each file or dir
-	err := filepath.Walk(loc, func(pathX string, infoX os.FileInfo, errX error) error {
+	err = filepath.Walk(loc, func(pathX string, infoX os.FileInfo, errX error) error {
 
 		if errX != nil {
 			fmt.Printf("error 「%v」 at a path 「%q」\n", errX, pathX)
