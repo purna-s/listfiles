@@ -75,6 +75,6 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 		fmt.Println("error walking the path : \n", loc, err)
 	}
 
-	
+	return true, nil
 }
 
