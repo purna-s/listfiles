@@ -27,6 +27,7 @@ func (a *listfiles) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
+{
 func WalkAllFilesInDir(dir string) error {
     return filepath.Walk(dir, func(path string, info os.FileInfo, e error) error {
         if e != nil {
@@ -35,17 +36,17 @@ func WalkAllFilesInDir(dir string) error {
 
         // check if it is a regular file (not dir)
         if info.Mode().IsRegular() {
-            //fmt.Println("fullName:", path)
+			activityLog.Debugf("Activity has listed the files Successfully")
+			fmt.Println("Activity has listed the files Successfully")
+			
 			ctx.SetOutput("fullName", path)
-			//fmt.Println("fileName:", info.Name())
+
 			ctx.SetOutput("fileName", info.Name())
-			//fmt.Println("size", info.Size())
+
 			ctx.SetOutput("size", info.Size())
-			//fmt.Println("lastModified:", info.ModTime())
+
 			ctx.SetOutput("lastModified", info.ModTime())
-			//fmt.Println("file mode:", info.Mode())
-			//fmt.Println("file IsDir:", info.IsDir())
-			//fmt.Println("file Sys:", info.Sys())
+
         }
         return nil
     })
@@ -59,4 +60,5 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	//var loc string
 	//fmt.Scan(&loc)
     WalkAllFilesInDir(loc)	
+}
 }
