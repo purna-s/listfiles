@@ -5,6 +5,7 @@ import (
 	"fmt"
     "os"
     "path/filepath"
+	"strings"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 )
