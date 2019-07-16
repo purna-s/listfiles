@@ -60,10 +60,15 @@ func TestEval(t *testing.T) {
 	//check output attr
 
 	FileName = tc.GetOutput("FileName")
+	assert.Equal(t, FileName, FileName)
 	Directory = tc.GetOutput("Directory")
+	assert.Equal(t, Directory, Directory)
 	Extension = tc.GetOutput("Extension")
+	assert.Equal(t, Extension, Extension)
 	Size = tc.GetOutput("Size")
+	assert.Equal(t, Size, Size)
 	ModTime = tc.GetOutput("ModTime")
+	assert.Equal(t, ModTime, ModTime)
 	
 	//assert.Equal(t, output, output)
 
