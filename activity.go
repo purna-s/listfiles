@@ -27,7 +27,7 @@ func (a *listfiles) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
-{
+
 func WalkAllFilesInDir(dir string) error {
     return filepath.Walk(dir, func(path string, info os.FileInfo, e error) error {
         if e != nil {
@@ -61,4 +61,4 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	//fmt.Scan(&loc)
     WalkAllFilesInDir(loc)	
 }
-}
+
