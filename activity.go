@@ -53,7 +53,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 				fmt.Println("Size", infoX.Size())
 				fmt.Println("ModTime", infoX.ModTime())
 				fmt.Println("\n")
-			} else if pathX == loc {
+			} else if filepath.Dir(pathX)) == loc {
 					fmt.Println("FileName", infoX.Name())
 					fmt.Println("Directory", filepath.Dir(pathX))
 					fmt.Println("Extension", filepath.Ext(pathX))
