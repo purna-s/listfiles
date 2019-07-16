@@ -37,7 +37,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	
 	
 	// the function that handles each file or dir
-	var ff = func(pathX string, infoX os.FileInfo, errX error) error {
+	var ff := func(pathX string, infoX os.FileInfo, errX error) error {
 
 		// first thing to do, check error. and decide what to do about it
 		if errX != nil {
@@ -67,7 +67,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 		return nil
 	}
 
-	err := filepath.Walk(loc, ff)
+	err = filepath.Walk(loc, ff)
 
 	if err != nil {
 		fmt.Println("error walking the path : \n", loc, err)
