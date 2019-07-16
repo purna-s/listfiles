@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "flogo:activity",
   "ref": "github.com/purna-s/listfiles",  
-  "title": "ListFiles_Test7",
+  "title": "ListFiles",
   "description": "Lists all the files in the directory",
   "author": "Purna S <purna.sadanala@prowesssoft.com>",
 
