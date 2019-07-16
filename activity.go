@@ -76,6 +76,12 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	activityLog.Debugf("Activity has listed out the files Successfully")
 	fmt.Println("Activity has listed out the files Successfully")
 	
+	ctx.SetOutput("FileName", infoX.Name())
+	ctx.SetOutput("Directory", filepath.Dir(pathX))
+	ctx.SetOutput("Extension", filepath.Ext(pathX))
+	ctx.SetOutput("Size", infoX.Size())
+	ctx.SetOutput("ModTime", infoX.ModTime())
+	
 	return true, nil
 }
 
