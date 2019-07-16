@@ -3,6 +3,7 @@ package listfiles
 import (
 
 	"fmt"
+	"log"
     "os"
     "path/filepath"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
@@ -49,7 +50,8 @@ func TestEval(t *testing.T) {
 	tc := test.NewTestActivityContext(getActivityMetadata())
 
 	//setup attrs
-	tc.SetInput("Loc", "F:\Flogo_Apps\Consumer")
+	tc.SetInput("Path", "F:\TESTING")
+	tc.SetInput("SubDirectories[Y/N]", "Y")
 
 	done, err := act.Eval(tc)
 	if !done {
@@ -58,13 +60,12 @@ func TestEval(t *testing.T) {
 	act.Eval(tc)
 	//check output attr
 
-	fullName := tc.GetOutput("fullName")
-	assert.Equal(t, fullName, fullName)
-	fileName := tc.GetOutput("fileName")
-	assert.Equal(t, fileName, fileName)
-	size := tc.GetOutput("size")
-	assert.Equal(t, size, size)
-	lastModified := tc.GetOutput("lastModified")
-	assert.Equal(t, lastModified, lastModified)
+	FileName = tc.GetOutput("FileName")
+	Directory = tc.GetOutput("Directory")
+	Extension = tc.GetOutput("Extension")
+	Size = tc.GetOutput("Size")
+	ModTime = tc.GetOutput("ModTime")
+	
+	//assert.Equal(t, output, output)
 
 }

@@ -3,33 +3,42 @@
   "version": "0.0.1",
   "type": "flogo:activity",
   "ref": "github.com/purna-s/listfiles",  
-  "title": "listfiles_test",
-  "description": "Send mail to recipient",
+  "title": "ListFiles_Test",
+  "description": "Lists all the files in the directory",
   "author": "Purna S <purna.sadanala@prowesssoft.com>",
 
   "inputs":[
     
 	{
-      "name": "Loc",
+      "name": "Path",
+      "type": "string",
+      "required": true
+    },
+	{
+      "name": "SubDirectories[Y/N]",
       "type": "string",
       "required": true
     }
   ],
   "outputs": [
     {
-      "name": "fullName",
-      "type": "string"
-    ,
-	{
-      "name": "fileName",
+      "name": "FileName",
       "type": "string"
     },
 	{
-      "name": "size",
+      "name": "Directory",
       "type": "string"
     },
 	{
-      "name": "lastModified",
+      "name": "Extension",
+      "type": "string"
+    },
+	{
+      "name": "Size",
+      "type": "string"
+    },
+	{
+      "name": "ModTime",
       "type": "string"
     }
   ]

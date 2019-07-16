@@ -3,6 +3,7 @@ package listfiles
 import (
 
 	"fmt"
+	"log"
     "os"
     "path/filepath"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
@@ -27,38 +28,51 @@ func (a *listfiles) Metadata() *activity.Metadata {
 	return a.metadata
 }
 
-(
-func WalkAllFilesInDir(dir string) error {
-    return filepath.Walk(dir, func(path string, info os.FileInfo, e error) error {
-        if e != nil {
-            return e
-        }
-
-        // check if it is a regular file (not dir)
-        if info.Mode().IsRegular() {
-			activityLog.Debugf("Activity has listed the files Successfully")
-			fmt.Println("Activity has listed the files Successfully")
-			
-			ctx.SetOutput("fullName", path)
-
-			ctx.SetOutput("fileName", info.Name())
-
-			ctx.SetOutput("size", info.Size())
-
-			ctx.SetOutput("lastModified", info.ModTime())
-
-        }
-        return nil
-    })
-}
-)
 // Eval implements activity.Activity.Eval
 func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	
-	loc := ctx.GetInput("Loc").(string)
-	//fmt.Println("Enter Location:")
-	//var loc string
-	//fmt.Scan(&loc)
-    WalkAllFilesInDir(loc)	
+	loc := ctx.GetInput("Path").(string)
+	subs := ctx.GetInput("SubDirectories[Y/N]").(string)
+	
+	
+	// the function that handles each file or dir
+	var ff = func(pathX string, infoX os.FileInfo, errX error) error {
+
+		// first thing to do, check error. and decide what to do about it
+		if errX != nil {
+			fmt.Println("error at a path \n", errX, pathX)
+			return errX
+		}
+
+		// find out if it's a dir or file, if file, print info
+		if infoX.IsDir() {
+			fmt.Println("\n'", pathX, "'", " is a directory.\n")
+		} else if subs == "Y" {
+				ctx.SetOutput("FileName", infoX.Name())
+				ctx.SetOutput("Directory", filepath.Dir(pathX))
+				ctx.SetOutput("Extension", filepath.Ext(pathX))
+				ctx.SetOutput("Size", infoX.Size())
+				ctx.SetOutput("ModTime", infoX.ModTime())
+			} else {
+				if filepath.Dir(pathX) == loc {
+					ctx.SetOutput("FileName", infoX.Name())
+					ctx.SetOutput("Directory", filepath.Dir(pathX))
+					ctx.SetOutput("Extension", filepath.Ext(pathX))
+					ctx.SetOutput("Size", infoX.Size())
+					ctx.SetOutput("ModTime", infoX.ModTime())
+					}
+				}
+		activityLog.Debugf("Activity has listed out the files Successfully")
+		fmt.Println("Activity has listed out the files Successfully")
+		
+		return nil
+	}
+
+	err := filepath.Walk(loc, ff)
+
+	if err != nil {
+		fmt.Println("error walking the path : \n", loc, err)
+	}
+	
 }
 
