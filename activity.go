@@ -47,18 +47,18 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 		if infoX.IsDir() {
 			fmt.Println("\n'", pathX, "'", " is a directory.\n")
 		} else if subs == "Y" {
-				fmt.Println("  file name: ", infoX.Name())
-				fmt.Println("  dir: ", filepath.Dir(pathX))
-				fmt.Println("  extenion: ", filepath.Ext(pathX))
-				fmt.Println("  file size: ", infoX.Size())
-				fmt.Println("  ModTime: ", infoX.ModTime())
+				fmt.Println("FileName", infoX.Name())
+				fmt.Println("Directory", filepath.Dir(pathX))
+				fmt.Println("Extension", filepath.Ext(pathX))
+				fmt.Println("Size", infoX.Size())
+				fmt.Println("ModTime", infoX.ModTime())
 				fmt.Println("\n")
 			} else if pathX == loc {
-					fmt.Println("  file name: ", infoX.Name())
-					fmt.Println("  dir: ", filepath.Dir(pathX))
-					fmt.Println("  extenion: ", filepath.Ext(pathX))
-					fmt.Println("  file size: ", infoX.Size())
-					fmt.Println("  ModTime: ", infoX.ModTime())
+					fmt.Println("FileName", infoX.Name())
+					fmt.Println("Directory", filepath.Dir(pathX))
+					fmt.Println("Extension", filepath.Ext(pathX))
+					fmt.Println("Size", infoX.Size())
+					fmt.Println("ModTime", infoX.ModTime())
 					fmt.Println("\n")
 				}
 	return nil
