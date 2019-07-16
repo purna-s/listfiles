@@ -3,7 +3,6 @@ package listfiles
 import (
 
 	"fmt"
-	"log"
     "os"
     "path/filepath"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
@@ -68,11 +67,10 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 		return nil
 	}
 
-	err := filepath.Walk(loc, ff)
+	err = filepath.Walk(loc, ff)
 
 	if err != nil {
 		fmt.Println("error walking the path : \n", loc, err)
 	}
-	
 }
 

@@ -3,7 +3,6 @@ package listfiles
 import (
 
 	"fmt"
-	"log"
     "os"
     "path/filepath"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
