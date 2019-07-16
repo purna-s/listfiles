@@ -35,7 +35,7 @@ func (a *listfiles) Eval(ctx activity.Context) (done bool, err error) {
 	//var loc string
 	//fmt.Scan(&loc)
     WalkAllFilesInDir(loc)	
-}
+
 
 func WalkAllFilesInDir(dir string) error {
     return filepath.Walk(dir, func(path string, info os.FileInfo, e error) error {
@@ -60,6 +60,6 @@ func WalkAllFilesInDir(dir string) error {
         return nil
     })
 }
-
+}
 
 
